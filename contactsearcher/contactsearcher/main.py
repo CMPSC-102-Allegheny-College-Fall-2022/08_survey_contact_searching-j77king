@@ -39,10 +39,16 @@ def contactsearcher(
     typer.echo(
         f'  We are looking for contacts who have a job related to "{job_description}":'
     )
+    # searches file
     list_of_matches = search_for_email_given_job(job_description, contacts_file)
+    print()
+    # prints the contacts and jobs in the list
     for item in list_of_matches:
         print(f'{item[0]} is a {item[1]}')
+    print()
+    # prints a conclusion statement
     if len(list_of_matches) > 0:
         print('Wow, we found some contacts! Email them to learn about your job!')
+    # prints if no matches found
     else:
         print('No matches found')

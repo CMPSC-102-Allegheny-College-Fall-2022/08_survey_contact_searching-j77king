@@ -9,13 +9,15 @@ import csv
 
 def search_for_email_given_job(job_description: str, contacts: str) -> List[List[str]]:
     """Search for and return job description(s) given an email address."""
+    # generates empty list
     contacts_list = []
+    # opens and reads the csv file
     with open(contacts, mode='r') as csv_file:
         contact_reader = csv.reader(csv_file, delimiter=',')
+        # iterates through the lines in the file
         for row in contact_reader:
-            job_words = row[1].split(" ")
-            for word in job_words:
-                if job_description.lower() in word.lower():
-                    contacts_list.append(row)
+            # searches the descriptions
+            if job_description.lower() in row[1].lower():
+                contacts_list.append(row)
 
     return contacts_list
