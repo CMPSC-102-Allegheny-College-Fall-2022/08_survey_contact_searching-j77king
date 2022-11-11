@@ -10,13 +10,12 @@ import csv
 def search_for_email_given_job(job_description: str, contacts: str) -> List[List[str]]:
     """Search for and return job description(s) given an email address."""
     contacts_list = []
-    for line in contacts:
-        contact = line.split(",")
-        for item in contact:
-            if " " in item:
-                item.replace(",", "")
-            ind_words = item.split(" ")
-            for word in ind_words:
-                if word.lower() == job_description.lower():
-                    contacts_list.append(contact)
+    with open(contacts, mode='r') as csv_file:
+        contact_reader = csv.reader(csv_file, delimiter=',')
+        for row in contact_reader:
+            job_words = row[1].split(" ")
+            for word in job_words:
+                if job_description.lower() in word.lower():
+                    contacts_list.append(row)
+
     return contacts_list
