@@ -1,24 +1,56 @@
 # Contact Searching
 
-TODO: Make sure that you delete all of the TODO markers and the written prompts
-from this document. You should also ensure that the document does not have any
-mistakes in spelling, grammar, or the syntax of Markdown. Ultimately, the final
-version of your reflection should be a polished document that is suitable for
-publication on your web site.
-
-## Add Your Name Here
+## Jake King
 
 ## Program Output
 
 ### What is the output from running the following commands?
 
-TODO: Use a fenced code block to provide the output for this command.
-
 - `poetry run contactsearcher --job-description "engineer" --contacts-file input/contacts.txt`
 
-TODO: Use a fenced code block to provide the output for this command.
+```
+The contacts file contains 100 people in it! Let's get searching!
+
+  We are looking for contacts who have a job related to "engineer":
+
+joe70@yahoo.com is a Network engineer
+torresjames@white.info is a Electrical engineer
+grahamjoel@castillo-gilbert.net is a Engineer, technical sales
+gsutton@miller.com is a Engineer, maintenance
+gharris@villarreal-snow.com is a Water engineer
+williamsondavid@lopez.com is a Automotive engineer
+ronald83@yahoo.com is a Maintenance engineer
+zmarshall@yahoo.com is a Control and instrumentation engineer
+christopher35@yahoo.com is a Civil engineer, consulting
+jacquelinedavid@hotmail.com is a Engineer, electronics
+espinozadaryl@hill-maddox.com is a Engineering geologist
+edwardsjacob@gmail.com is a Chemical engineer
+
+Wow, we found some contacts! Email them to learn about your job!
+```
 
 - `poetry run contactsearcher --job-description "neer" --contacts-file input/contacts.txt`
+
+```
+The contacts file contains 100 people in it! Let's get searching!
+
+  We are looking for contacts who have a job related to "neer":
+
+joe70@yahoo.com is a Network engineer
+torresjames@white.info is a Electrical engineer
+grahamjoel@castillo-gilbert.net is a Engineer, technical sales
+gsutton@miller.com is a Engineer, maintenance
+gharris@villarreal-snow.com is a Water engineer
+williamsondavid@lopez.com is a Automotive engineer
+ronald83@yahoo.com is a Maintenance engineer
+zmarshall@yahoo.com is a Control and instrumentation engineer
+christopher35@yahoo.com is a Civil engineer, consulting
+jacquelinedavid@hotmail.com is a Engineer, electronics
+espinozadaryl@hill-maddox.com is a Engineering geologist
+edwardsjacob@gmail.com is a Chemical engineer
+
+Wow, we found some contacts! Email them to learn about your job!
+```
 
 ## Source Code and Configuration Files
 
@@ -26,18 +58,27 @@ TODO: Use a fenced code block to provide the output for this command.
 
 #### The source code statement that makes the `search` module available to `main`
 
-TODO: Use a fenced code block to provide the requested source code
-TODO: Write at least one paragraph to explain the request source code
+```
+from .search import search_for_email_given_job
+```
+
+This statement works because it looks at the file "search" located in the same directory as the main file, indicated by the period before search. Then, it imports the function needed from the search module.
 
 #### The source code statement that extracts the current job description for a contact
 
-TODO: Use a fenced code block to provide the requested source code
-TODO: Write at least one paragraph to explain the request source code
+```
+if job_description.lower() in row[1].lower():
+```
+
+In this if statement, row[1] is the current job description. The program is therefore able to search this job description for the job_description value input in the command line.
 
 #### Invocation of the function called `search_for_email_given_job`
 
-TODO: Use a fenced code block to provide the requested source code
-TODO: Write at least one paragraph to explain the request source code
+```
+ list_of_matches = search_for_email_given_job(job_description, contacts_file)
+```
+
+This line creates a list of matches (returned from the search function). To call the search function, it needs to pass two variables: the job_description given in the command line and the contacts_file also given in the command line.
 
 #### Test case for the function called `search_for_email_given_job`
 
