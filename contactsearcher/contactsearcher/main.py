@@ -6,6 +6,9 @@
 from pathlib import Path
 from typing import Optional
 import typer
+from .search import search_for_email_given_job
+
+cli = typer.Typer()
 
 
 @cli.command()
@@ -36,9 +39,10 @@ def contactsearcher(
     typer.echo(
         f'  We are looking for contacts who have a job related to "{job_description}":'
     )
-    # TODO: perform the search for all of the relevant email addresses given the job description
-    # TODO: we know that there are some contacts in the list, so iterate through the list of
-    # the contacts and display them in the terminal window
-    # TODO: display final information about the program's behavior in the terminal window;
-    # this should summarize whether or not the program found any matches
-    # TODO: refer to the expected output on Discord and/or Proactive Programmers for details
+    list_of_matches = search_for_email_given_job(job_description, contacts_text)
+    for item in list_of_matches:
+        print(f'{item[0]} is a {item[1]}')
+    if len(list_of_matches) > 0:
+        print('Wow, we found some contacts! Email them to learn about your job!')
+    else:
+        print('No matches found')
